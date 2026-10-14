@@ -1,0 +1,68 @@
+# 포켓몬 & MBTI 데이터베이스
+POKEMON_MBTI = {
+    "ISTJ": {"pokemon": "거북왕", "title": "신중하고 철저한 전략가", "desc": "침착하고 단단하게 책임을 다하는 방어의 귀재"},
+    "ISFJ": {"pokemon": "해피너스", "title": "다정하고 헌신적인 수호자", "desc": "주변을 따뜻하게 보살피고 치료해 주는 상냥한 존재"},
+    "INFJ": {"pokemon": "뮤츠", "title": "통찰력 있는 고독한 사색가", "desc": "깊은 신념과 철학으로 세상을 바라보는 전설의 포켓몬"},
+    "INTJ": {"pokemon": "후딘", "title": "IQ 5000의 천재 전략가", "desc": "철저한 계산과 통찰력으로 완벽한 계획을 세우는 존재"},
+    "ISTP": {"pokemon": "루카리오", "title": "냉철하고 과묵한 무술가", "desc": "파동을 느끼며 상황을 냉정하게 판단해 대처하는 실전파"},
+    "ISFP": {"pokemon": "메타몽", "title": "유연하고 예술적인 변신가", "desc": "어디든 잘 맞춰주고 자유롭게 분위기를 흡수하는 존재"},
+    "INFP": {"pokemon": "이브이", "title": "무한한 가능성의 꿈꾸는 아이", "desc": "풍부한 감성과 가능성으로 어떤 방향으로든 진화할 준비가 된 포켓몬"},
+    "INTP": {"pokemon": "폴리곤", "title": "호기심 많은 논리 연구가", "desc": "데이터와 논리를 바탕으로 세상을 탐구하는 독창적인 타입"},
+    "ESTP": {"pokemon": "리자몽", "title": "모험을 즐기는 열정적인 승부사", "desc": "화려한 행동력과 승부욕으로 전장을 지배하는 라이벌"},
+    "ESFP": {"pokemon": "피카츄", "title": "분위기 메이커인 에너자이저", "desc": "언제나 주변을 밝게 만들고 친근하게 다가가는 인기쟁이"},
+    "ENFP": {"pokemon": "푸린", "title": "자유로운 영혼의 아티스트", "desc": "감정이 풍부하고 사람들에게 자신의 노래와 매력을 어필하는 존재"},
+    "ENTP": {"pokemon": "팬텀", "title": "장난기 가득한 창의적 장난꾸러기", "desc": "허를찌르는 아이디어와 유쾌한 장난으로 예측 불허한 분위기를 만듦"},
+    "ESTJ": {"pokemon": "윈디", "title": "위엄 있고 당당한 리더", "desc": "체계적이고 정직하며 강한 리더십으로 조직을 이끄는 포켓몬"},
+    "ESFJ": {"pokemon": "토게키스", "title": "평화를 사랑하는 우정의 전달자", "desc": "모두에게 기쁨을 주고 친화력이 뛰어난 행운의 아이콘"},
+    "ENFJ": {"pokemon": "망나뇽", "title": "상냥하고 정의로운 수호신", "desc": "넓은 마음으로 타인을 돕고 다정하게 감싸주는 온화한 영웅"},
+    "ENTJ": {"pokemon": "뮤", "title": "모든 것을 가능케 하는 완벽주의자", "desc": "통찰력과 실행력으로 유연하면서도 완벽하게 상황을 지배함"}
+}
+
+def pokemon_mbti_quiz():
+    print("=== ϞϞ(๑⚈  fontSize ⚈๑) 포켓몬 MBTI 진단 테스트 ===")
+    print("질문을 읽고 자신에게 더 가까운 번호를 선택하세요 (1 또는 2)\n")
+
+    scores = {'E': 0, 'I': 0, 'S': 0, 'N': 0, 'T': 0, 'F': 0, 'J': 0, 'P': 0}
+
+    questions = [
+        {"q": "1. 휴일에 에너지를 충전하는 방식은?", "a1": ("친구들과 포켓몬 배틀/체육관 순례를 간다", "E"), "a2": ("비밀 기지에서 혼자 쉬거나 책을 읽는다", "I")},
+        {"q": "2. 새로운 모험을 시작할 때 중요한 것은?", "a1": ("눈앞에 보이는 현실적인 마을 지도와 도감 정보", "S"), "a2": ("이 모험 끝에 숨겨진 세상의 비밀과 전설", "N")},
+        {"q": "3. 동료 포켓몬이 배틀에서 졌을 때 나의 반응은?", "a1": ("어떤 기술 선택이 문제였는지 분석하고 솔루션을 준다", "T"), "a2": ("많이 아팠지? 수고했다고 격려하고 칭찬해 준다", "F")},
+        {"q": "4. 포켓몬 리그 도전 계획은?", "a1": ("동선, 체육관 순서, 포켓몬 라인업을 미리 계획한다", "J"), "a2": ("발길 닿는 대로 여행하며 상황에 맞게 도전한다", "P")}
+    ]
+
+    for q in questions:
+        print(q["q"])
+        print(f"  1) {q['a1'][0]}")
+        print(f"  2) {q['a2'][0]}")
+        
+        while True:
+            choice = input("선택 (1/2): ").strip()
+            if choice == '1':
+                scores[q['a1'][1]] += 1
+                break
+            elif choice == '2':
+                scores[q['a2'][1]] += 1
+                break
+            else:
+                print("잘못된 입력입니다. 1 또는 2를 입력해주세요.")
+        print()
+
+    # MBTI 조합
+    mbti = ""
+    mbti += "E" if scores["E"] >= scores["I"] else "I"
+    mbti += "S" if scores["S"] >= scores["N"] else "S" if scores["S"] > scores["N"] else "N"
+    mbti += "T" if scores["T"] >= scores["F"] else "F"
+    mbti += "J" if scores["J"] >= scores["P"] else "P"
+
+    result = POKEMON_MBTI.get(mbti)
+    
+    print("=" * 45)
+    print(f"당신의 MBTI 유형은 [ {mbti} ] 입니다!")
+    print(f"당신과 매칭되는 포켓몬: 🌟 {result['pokemon']} 🌟")
+    print(f"타이틀: {result['title']}")
+    print(f"설명: {result['desc']}")
+    print("=" * 45)
+
+if __name__ == "__main__":
+    pokemon_mbti_quiz()
